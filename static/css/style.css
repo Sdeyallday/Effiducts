@@ -45,7 +45,7 @@ body::before{
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   width: 600px; height: 600px;
-  background: url("../img/logo3.png") no-repeat center / contain;
+  background: url("../img/logo3_1.png") no-repeat center / contain;
   opacity: 0.30;
   pointer-events: none;
   z-index: -1;
