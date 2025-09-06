@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ title or 'Effiducts' }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=8">
+</head>
+<body>
+
+<header class="site-header">
+  <!-- Logo + tagline -->
+  <div class="brand-block">
+    <a class="brand-link" href="/">
+      <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Effiducts logo" class="logo">
+    </a>
+    <div class="tagline">Your Local Electronic Dealer</div>
+  </div>
+
+  <!-- Rechtsboven blok -->
+  <div class="account-block">
+    <a href="/cart" class="cart-fixed" aria-label="Winkelwagen">
+      🛒 Winkelwagen
+    </a>
+    <div class="account-actions">
+      <a class="btn ghost s" href="/login">Login</a>
+      <a class="btn primary s" href="/register">Register</a>
+    </div>
+  </div>
+
+  <!-- Tabs in container -->
+  <div class="container">
+    <div class="hdr">
+      <nav class="hdr-left tabs" aria-label="Primary">
+        <a class="tab active" href="#">Home</a>
+        <a class="tab" href="#">Products</a>
+        <a class="tab" href="#">Reviews</a>
+        <a class="tab" href="#">About Us</a>
+        <a class="tab" href="#">Contact</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+
+<main>
+  <section class="hero">
+    <h2>Welkom bij Effiducts</h2>
+    <p>Uw partner in innovatieve en betrouwbare oplossingen.</p>
+    <a href="#" class="btn">Ontdek meer</a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2025 Effiducts. Alle rechten voorbehouden.</p>
+</footer>
+
+</body>
+</html>
