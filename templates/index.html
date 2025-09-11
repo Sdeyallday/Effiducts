@@ -4,34 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{{ title or 'Effiducts' }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=9">
 </head>
 <body>
 
 <header class="site-header">
-  <!-- Logo + tagline -->
+  <!-- LOGO linksboven -->
   <div class="brand-block">
-    <a class="brand-link" href="/">
+    <a class="brand-link" href="/" aria-label="Effiducts">
       <img src="{{ url_for('static', filename='img/logo3.png') }}" alt="Effiducts logo" class="logo">
     </a>
-    <div class="tagline">Your Local Electronic Dealer</div>
   </div>
 
-  <!-- Rechtsboven blok -->
+  <!-- TAGLINE middenboven -->
+  <div class="tagline">Your Local Electronic Dealer</div>
+
+  <!-- RECHTSBOVEN: Cart + Login/Register -->
   <div class="account-block">
-    <a href="/cart" class="cart-fixed" aria-label="Winkelwagen">
-      🛒 Winkelwagen
-    </a>
+    <a href="/cart" class="cart-fixed" aria-label="Winkelwagen">🛒 Winkelwagen</a>
     <div class="account-actions">
-      <a class="btn ghost s" href="/login">Login</a>
-      <a class="btn primary s" href="/register">Register</a>
+      <a class="btn s ghost" href="/login">Login</a>
+      <a class="btn s primary" href="/register">Register</a>
     </div>
   </div>
 
-  <!-- Tabs in container -->
+  <!-- NAV in container -->
   <div class="container">
     <div class="hdr">
-      <nav class="hdr-left tabs" aria-label="Primary">
+      <nav class="tabs" aria-label="Primary">
         <a class="tab active" href="#">Home</a>
         <a class="tab" href="#">Products</a>
         <a class="tab" href="#">Reviews</a>
@@ -42,13 +42,12 @@
   </div>
 </header>
 
-<p><span class="red-text">NOUR SCHATJE JE BENT DE BESTEEE</span>.</p>
-
-
 <main>
   <section class="hero">
     <h2>Welkom bij Effiducts</h2>
-    <p>Uw partner in innovatieve en betrouwbare oplossingen.</p>
+    <p>Uw partner in innovatieve en betrouwbare oplossingen.
+       <span class="red-text">⚡ Tijdelijke actie:</span> gratis verzending boven €50.
+    </p>
     <a href="#" class="btn">Ontdek meer</a>
   </section>
 </main>
