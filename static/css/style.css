@@ -1,6 +1,6 @@
 :root{
-  --edge: clamp(12px, 3vw, 32px);        /* zij-ademruimte */
-  --logoH: clamp(80px, 10vw, 120px);     /* logo-hoogte (responsief) */
+  --edge: clamp(12px, 3vw, 32px);      /* zij-ademruimte */
+  --logoH: clamp(80px, 10vw, 120px);   /* responsieve logohoogte */
 
   --bg1: #0c1117;
   --bg: #081526;
@@ -10,261 +10,185 @@
   --line: #1b2230;
 }
 
-* { box-sizing: border-box; }
-html { height: 100%; }
+*{ box-sizing:border-box }
+html{ height:100% }
 
 body{
-  min-height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  text-align: center;
+  min-height:100%;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  font-family:'Segoe UI', Roboto, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  text-align:center;
 }
 
-main { flex: 1; }
-.hero { padding: 60px 20px; }
+main{ flex:1 }
+.hero{ padding:60px 20px }
 
-/* Basisknop (los van headerknoppen) */
+/* ===== Buttons (globaal) ===== */
 .btn{
-  display: inline-block;
-  padding: 12px 24px;
-  margin-top: 20px;
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
+  display:inline-block;
+  padding:12px 24px;
+  margin-top:20px;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  border-radius:4px;
 }
+.btn.s{ padding:7px 12px; border-radius:999px; font-size:14px; line-height:1; margin-top:0 }
+.btn.ghost{ background:transparent; border:1px solid var(--line); color:var(--text) }
+.btn.ghost:hover{ background:rgba(255,255,255,.05) }
+.btn.primary{ background:#0e5be1; border:1px solid #0e5be1; color:#fff }
+.btn.primary:hover{ filter:brightness(1.08) }
 
 /* ===== Achtergronden ===== */
 body::before{
-  content: "";
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px; height: 600px;
-  background: url("../img/logo3_1.png") no-repeat center / contain;
-  opacity: 0.30;
-  pointer-events: none;
-  z-index: -1;
+  content:"";
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:600px; height:600px;
+  background:url("../img/logo3_1.png") no-repeat center/contain;
+  opacity:.30;
+  pointer-events:none;
+  z-index:-1;
 }
 body::after{
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("../img/logo4.png") center/cover no-repeat;
-  opacity: 0.05;
-  z-index: -2;
-  pointer-events: none;
+  content:"";
+  position:fixed; inset:0;
+  background:url("../img/logo4.png") center/cover no-repeat;
+  opacity:.05;
+  pointer-events:none;
+  z-index:-2;
 }
-header, main, footer { position: relative; z-index: 1; }
+header, main, footer{ position:relative; z-index:1 }
 
 /* ===== Footer ===== */
 .site-footer{
-  background: var(--bg);
-  color: var(--text);
-  text-align: center;
-  padding: 15px 10px;
-  font-size: 14px;
-  border-top: 1px solid var(--line);
+  background:var(--bg);
+  color:var(--text);
+  text-align:center;
+  padding:15px 10px;
+  font-size:14px;
+  border-top:1px solid var(--line);
 }
 
 /* =========================
-   HEADER (schoon & stabiel)
+   HEADER
    ========================= */
 .site-header{
-  background: var(--bg);
-  position: relative;                       /* voor absolute brand-block */
-  height: calc(var(--logoH) + 24px);        /* groeit mee met logo */
+  background:var(--bg);
+  position:relative;                     /* voor absolute elementen */
+  height:calc(var(--logoH) + 32px);      /* genoeg ruimte voor top content */
 }
 
-/* container = centreren + symmetrische zijruimte */
+/* container = centreren + zijruimte */
 .container{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-inline: var(--edge);
-  height: 100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding-inline:var(--edge);
+  height:100%;
 }
 
-/* grid binnen de container: tabs | acties */
+/* NAV centraal in de header */
 .hdr{
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
-  height: 100%;
+  height:100%;
+  display:flex;
+  align-items:flex-end;                  /* tabs laag in de header */
+  justify-content:center;
 }
+.tabs{
+  display:flex;
+  gap:18px;
+  white-space:nowrap;
+}
+.tab{
+  padding:6px 0;
+  line-height:1;
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:2px solid transparent;
+}
+.tab:hover{ color:var(--text) }
+.tab.active{ color:var(--text); border-bottom-color:rgba(255,255,255,.2) }
 
-/* LOGO + TAGLINE: vast linksboven, onafhankelijk van grid */
+/* LOGO linksboven (los van layout) */
 .brand-block{
-  position: absolute;
-  top: clamp(8px, 2vw, 16px);
-  left: var(--edge);
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(8px, 1.6vw, 18px);
-  z-index: 2;
-  pointer-events: none;
+  position:absolute;
+  top:clamp(8px,2vw,16px);
+  left:var(--edge);
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  z-index:2;
+  pointer-events:none;
 }
-.brand-link{ pointer-events: auto; }
-.logo{ height: var(--logoH); display: block; }
+.brand-link{ pointer-events:auto }
+.logo{ height:var(--logoH); display:block }
 
-/* Tagline met lichte rode gloed + subtiele drift */
+/* TAGLINE middenboven */
 .tagline{
-  font-weight: 600;
-  letter-spacing: .2px;
-  white-space: nowrap;
-  font-size: clamp(14px, 1.6vw, 18px);
-  color: #ffd7d7;
-  text-shadow:
-    0 0 6px rgba(255, 80, 80, .55),
-    0 0 12px rgba(255, 80, 80, .35);
-  animation: drift 2.6s ease-in-out infinite, glow 3.2s ease-in-out infinite;
+  position:absolute;
+  top:clamp(8px,2vw,16px);
+  left:50%;
+  transform:translateX(-50%);
+  font-weight:600;
+  letter-spacing:.2px;
+  white-space:nowrap;
+  font-size:clamp(14px,1.6vw,18px);
+  color:#ffd7d7;
+  text-shadow:0 0 6px rgba(255,80,80,.55), 0 0 12px rgba(255,80,80,.35);
+  animation:drift 2.6s ease-in-out infinite, glow 3.2s ease-in-out infinite;
+  z-index:2;
 }
-@keyframes drift{ 0%,100%{ transform:translateX(0) } 50%{ transform:translateX(6px) } }
+@keyframes drift{ 0%,100%{transform:translateX(-50%)} 50%{transform:translateX(calc(-50% + 6px))} }
 @keyframes glow{
   0%,100%{ text-shadow:0 0 6px rgba(255,80,80,.55),0 0 12px rgba(255,80,80,.35); opacity:.95 }
   50%    { text-shadow:0 0 8px rgba(255,80,80,.75),0 0 18px rgba(255,80,80,.45); opacity:1 }
 }
 
-/* Tabs (midden) */
-.hdr-left{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  white-space: nowrap;
+/* RECHTSBOVEN: cart + account (één blok, geen overlap) */
+.account-block{
+  position:absolute;
+  top:clamp(8px,2vw,16px);
+  right:var(--edge);
+  display:flex;
+  flex-direction:column;    /* cart boven, account eronder */
+  align-items:flex-end;
+  gap:8px;
+  z-index:3;
 }
-.tab{
-  padding: 6px 0; line-height: 1;
-  color: var(--muted);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
+.cart-fixed{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 14px;
+  border-radius:999px;
+  border:1px solid #0e5be1;
+  background:#0e5be1;
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+  line-height:1;
 }
-.tab:hover{ color: var(--text); }
-.tab.active{ color: var(--text); border-bottom-color: rgba(255,255,255,.2); }
-
-/* Actieknoppen (rechts) */
-.hdr-right{
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-top: 8px;               /* ademruimte boven */
-}
-.actions .btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px 12px;
-  line-height: 1;
-  font-weight: 600;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--text);
-  text-decoration: none;
-  background: transparent;
-}
-.btn.s{ font-size: 14px; }
-.btn.ghost:hover{ background: rgba(255,255,255,.05); }
-
-/* Cart knop */
-.cart-btn{
-  background: #0e5be1;
-  border: 1px solid #0e5be1;
-  border-radius: 999px;
-  padding: 7px 14px;
-  color: #fff;
-}
-.cart-btn:hover{ filter: brightness(1.1); }
+.cart-fixed:hover{ filter:brightness(1.1) }
+.account-actions{ display:flex; gap:10px }
 
 /* ===== Responsive ===== */
-@media (max-width: 600px){
-  .logo{ height: clamp(58px, 12vw, 90px); }
-  .site-header{ height: calc(clamp(58px, 12vw, 90px) + 24px); }
-  .hdr-left{ display: none; }                /* tabs uit; later hamburger mogelijk */
+@media (max-width: 700px){
+  .tabs{ display:none }                   /* later burger-menu mogelijk */
+  .site-header{ height:calc(clamp(58px,12vw,90px) + 40px) }
+  .logo{ height:clamp(58px,12vw,90px) }
 }
+
 @media (prefers-reduced-motion: reduce){
-  .tagline{ animation: none; }
+  .tagline{ animation:none }
 }
 
-/* Winkelwagen vast rechtsboven met ademruimte */
-.cart-fixed{
-  position: absolute;
-  top: clamp(8px, 2vw, 16px);   /* ademruimte boven */
-  right: var(--edge);           /* ademruimte rechts */
-  z-index: 3;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid #0e5be1;
-  background: #0e5be1;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  line-height: 1;
-}
-.cart-fixed:hover{ filter: brightness(1.1); }
-
-/* op mobiel iets compacter */
-@media (max-width: 600px){
-  .cart-fixed{
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-}
-
-/* Rechtsboven blok met cart + account */
-.account-block {
-  position: absolute;
-  top: clamp(5px, 2vw, 5px);   /* ademruimte boven */
-  right: var(--edge);           /* ademruimte rechts */
-  display: flex;
-  flex-direction: column;       /* cart boven, login/register eronder */
-  align-items: flex-end;        /* alles rechts uitlijnen */
-  gap: 8px;
-  z-index: 3;
-}
-
-/* Winkelwagen */
-.cart-fixed {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid #0e5be1;
-  background: #0e5be1;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  line-height: 1;
-}
-.cart-fixed:hover {
-  filter: brightness(1.1);
-}
-
-/* Login/Register onder cart */
-.account-actions {
-  display: flex;
-  flex-direction: row;    /* naast elkaar */
-  gap: 10px;
-}
-
-}
-
-
-
-
-
-.red-text {
-  color: #ff4d4d !important;   /* fel rood */
-  font-weight: 600; /* optioneel: vetgedrukt */
+/* ===== Utility: rode tekst ===== */
+.red-text, p .red-text, span.red-text{
+  color:#ff4d4d !important;
+  font-weight:600;
 }
